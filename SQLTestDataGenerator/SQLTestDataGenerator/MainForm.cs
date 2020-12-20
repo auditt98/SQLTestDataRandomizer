@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SQLTestDataGenerator.Generators.Complex;
 using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.Controls;
 
@@ -13,6 +14,7 @@ namespace SQLTestDataGenerator
 {
     public partial class MainForm : MetroForm
     {
+
         public MainForm()
         {
             Syncfusion.Windows.Forms.CaptionLabel captionLabel1 = new Syncfusion.Windows.Forms.CaptionLabel();
@@ -28,6 +30,21 @@ namespace SQLTestDataGenerator
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+            //NameGenerator _nameGenerator = new NameGenerator();
+            //textBoxExt1.Text = _nameGenerator.GenerateLastName();
+        }
+
+        private void textBoxExt1_TextChanged(object sender, EventArgs e)
+        {
+
+            System.Diagnostics.Debug.WriteLine("heleloo");
+        }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+            DatabaseConnectForm databaseConnectForm = new DatabaseConnectForm();
+            databaseConnectForm.ShowDialog();
 
         }
     }
