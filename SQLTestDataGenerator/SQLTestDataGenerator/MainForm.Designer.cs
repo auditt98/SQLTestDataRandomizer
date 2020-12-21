@@ -30,20 +30,36 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton3 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton4 = new Syncfusion.WinForms.Controls.SfButton();
+            this.connect_database_button = new Syncfusion.WinForms.Controls.SfButton();
+            this.gen_data_db_button = new Syncfusion.WinForms.Controls.SfButton();
+            this.gen_proc_Button = new Syncfusion.WinForms.Controls.SfButton();
+            this.gen_trigger_button = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
-            this.textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.settings_Button = new Syncfusion.WinForms.Controls.SfButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.connection_status_label = new System.Windows.Forms.Label();
+            this.connection_status_autoLabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dbms_name_autolabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.dbms_name_label = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.database_name_autolabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.database_name_label = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.username_autolabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.gridLayout1 = new Syncfusion.Windows.Forms.Tools.GridLayout(this.components);
+            this.gridLayout2 = new Syncfusion.Windows.Forms.Tools.GridLayout(this.components);
+            this.username_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLayout1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLayout2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -54,106 +70,241 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.sfButton1);
-            this.splitContainer1.Panel1.Controls.Add(this.sfButton2);
-            this.splitContainer1.Panel1.Controls.Add(this.sfButton3);
-            this.splitContainer1.Panel1.Controls.Add(this.sfButton4);
+            this.splitContainer1.Panel1.Controls.Add(this.connect_database_button);
+            this.splitContainer1.Panel1.Controls.Add(this.gen_data_db_button);
+            this.splitContainer1.Panel1.Controls.Add(this.gen_proc_Button);
+            this.splitContainer1.Panel1.Controls.Add(this.gen_trigger_button);
             this.splitContainer1.Panel1.Controls.Add(this.sfButton5);
-            this.splitContainer1.Panel1.Controls.Add(this.sfButton6);
+            this.splitContainer1.Panel1.Controls.Add(this.settings_Button);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.textBoxExt1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel4);
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1030, 571);
             this.splitContainer1.SplitterDistance = 829;
             this.splitContainer1.TabIndex = 0;
             // 
-            // sfButton1
+            // connect_database_button
             // 
-            this.sfButton1.AccessibleName = "Button";
-            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(210)))), ((int)(((byte)(202)))));
-            this.sfButton1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton1.ForeColor = System.Drawing.Color.Black;
-            this.sfButton1.Location = new System.Drawing.Point(1, 1);
-            this.sfButton1.Name = "sfButton1";
-            this.gridLayout1.SetParticipateInLayout(this.sfButton1, true);
-            this.sfButton1.Size = new System.Drawing.Size(276, 285);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(210)))), ((int)(((byte)(202)))));
-            this.sfButton1.Style.ForeColor = System.Drawing.Color.Black;
-            this.sfButton1.TabIndex = 0;
-            this.sfButton1.Text = "Kết nối CSDL";
-            this.sfButton1.UseVisualStyleBackColor = false;
-            this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click);
+            this.connect_database_button.AccessibleName = "Button";
+            this.connect_database_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(210)))), ((int)(((byte)(202)))));
+            this.connect_database_button.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.connect_database_button.ForeColor = System.Drawing.Color.Black;
+            this.connect_database_button.Location = new System.Drawing.Point(1, 1);
+            this.connect_database_button.Name = "connect_database_button";
+            this.gridLayout1.SetParticipateInLayout(this.connect_database_button, true);
+            this.connect_database_button.Size = new System.Drawing.Size(276, 285);
+            this.connect_database_button.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(210)))), ((int)(((byte)(202)))));
+            this.connect_database_button.Style.ForeColor = System.Drawing.Color.Black;
+            this.connect_database_button.TabIndex = 0;
+            this.connect_database_button.Text = "Connect";
+            this.connect_database_button.UseVisualStyleBackColor = false;
+            this.connect_database_button.Click += new System.EventHandler(this.connect_database_button_Click);
             // 
-            // sfButton2
+            // gen_data_db_button
             // 
-            this.sfButton2.AccessibleName = "Button";
-            this.sfButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton2.Location = new System.Drawing.Point(277, 1);
-            this.sfButton2.Name = "sfButton2";
-            this.gridLayout1.SetParticipateInLayout(this.sfButton2, true);
-            this.sfButton2.Size = new System.Drawing.Size(276, 285);
-            this.sfButton2.TabIndex = 1;
-            this.sfButton2.Text = "sfButton2";
+            this.gen_data_db_button.AccessibleName = "Button";
+            this.gen_data_db_button.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.gen_data_db_button.Location = new System.Drawing.Point(277, 1);
+            this.gen_data_db_button.Name = "gen_data_db_button";
+            this.gridLayout1.SetParticipateInLayout(this.gen_data_db_button, true);
+            this.gen_data_db_button.Size = new System.Drawing.Size(276, 285);
+            this.gen_data_db_button.TabIndex = 1;
+            this.gen_data_db_button.Text = "Generate Data";
+            this.gen_data_db_button.Click += new System.EventHandler(this.gen_data_db_button_Click);
             // 
-            // sfButton3
+            // gen_proc_Button
             // 
-            this.sfButton3.AccessibleName = "Button";
-            this.sfButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton3.Location = new System.Drawing.Point(553, 1);
-            this.sfButton3.Name = "sfButton3";
-            this.gridLayout1.SetParticipateInLayout(this.sfButton3, true);
-            this.sfButton3.Size = new System.Drawing.Size(276, 285);
-            this.sfButton3.TabIndex = 2;
-            this.sfButton3.Text = "sfButton3";
+            this.gen_proc_Button.AccessibleName = "Button";
+            this.gen_proc_Button.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.gen_proc_Button.Location = new System.Drawing.Point(553, 1);
+            this.gridLayout1.SetMinimumSize(this.gen_proc_Button, new System.Drawing.Size(276, 285));
+            this.gen_proc_Button.Name = "gen_proc_Button";
+            this.gridLayout1.SetParticipateInLayout(this.gen_proc_Button, true);
+            this.gridLayout1.SetPreferredSize(this.gen_proc_Button, new System.Drawing.Size(276, 285));
+            this.gen_proc_Button.Size = new System.Drawing.Size(276, 285);
+            this.gen_proc_Button.TabIndex = 2;
+            this.gen_proc_Button.Text = "Generate Procedure";
+            this.gen_proc_Button.Click += new System.EventHandler(this.gen_proc_Button_Click);
             // 
-            // sfButton4
+            // gen_trigger_button
             // 
-            this.sfButton4.AccessibleName = "Button";
-            this.sfButton4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton4.Location = new System.Drawing.Point(1, 286);
-            this.sfButton4.Name = "sfButton4";
-            this.gridLayout1.SetParticipateInLayout(this.sfButton4, true);
-            this.sfButton4.Size = new System.Drawing.Size(276, 285);
-            this.sfButton4.TabIndex = 3;
-            this.sfButton4.Text = "sfButton4";
+            this.gen_trigger_button.AccessibleName = "Button";
+            this.gen_trigger_button.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.gen_trigger_button.Location = new System.Drawing.Point(1, 286);
+            this.gen_trigger_button.Name = "gen_trigger_button";
+            this.gridLayout1.SetParticipateInLayout(this.gen_trigger_button, true);
+            this.gen_trigger_button.Size = new System.Drawing.Size(276, 285);
+            this.gen_trigger_button.TabIndex = 3;
+            this.gen_trigger_button.Text = "Generate Trigger";
             // 
             // sfButton5
             // 
             this.sfButton5.AccessibleName = "Button";
-            this.sfButton5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton5.AllowWrapText = true;
+            this.sfButton5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfButton5.Location = new System.Drawing.Point(277, 286);
             this.sfButton5.Name = "sfButton5";
             this.gridLayout1.SetParticipateInLayout(this.sfButton5, true);
             this.sfButton5.Size = new System.Drawing.Size(276, 285);
             this.sfButton5.TabIndex = 4;
-            this.sfButton5.Text = "sfButton5";
+            this.sfButton5.Text = "Customizable Data Generation";
             // 
-            // sfButton6
+            // settings_Button
             // 
-            this.sfButton6.AccessibleName = "Button";
-            this.sfButton6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton6.Location = new System.Drawing.Point(553, 286);
-            this.sfButton6.Name = "sfButton6";
-            this.gridLayout1.SetParticipateInLayout(this.sfButton6, true);
-            this.sfButton6.Size = new System.Drawing.Size(276, 285);
-            this.sfButton6.TabIndex = 5;
-            this.sfButton6.Text = "sfButton6";
+            this.settings_Button.AccessibleName = "Button";
+            this.settings_Button.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settings_Button.Location = new System.Drawing.Point(553, 286);
+            this.settings_Button.Name = "settings_Button";
+            this.gridLayout1.SetParticipateInLayout(this.settings_Button, true);
+            this.settings_Button.Size = new System.Drawing.Size(276, 285);
+            this.settings_Button.TabIndex = 5;
+            this.settings_Button.Text = "Settings";
             // 
-            // textBoxExt1
+            // panel4
             // 
-            this.textBoxExt1.BeforeTouchSize = new System.Drawing.Size(100, 25);
-            this.textBoxExt1.Location = new System.Drawing.Point(45, 63);
-            this.textBoxExt1.Name = "textBoxExt1";
-            this.textBoxExt1.Size = new System.Drawing.Size(100, 25);
-            this.textBoxExt1.TabIndex = 0;
-            this.textBoxExt1.Text = "textBoxExt1";
+            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel4.Controls.Add(this.connection_status_label);
+            this.panel4.Controls.Add(this.connection_status_autoLabel);
+            this.panel4.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel4.ForeColor = System.Drawing.Color.White;
+            this.panel4.Location = new System.Drawing.Point(0, 2);
+            this.panel4.Name = "panel4";
+            this.gridLayout2.SetParticipateInLayout(this.panel4, true);
+            this.panel4.Size = new System.Drawing.Size(197, 142);
+            this.panel4.TabIndex = 3;
+            // 
+            // connection_status_label
+            // 
+            this.connection_status_label.AutoEllipsis = true;
+            this.connection_status_label.AutoSize = true;
+            this.connection_status_label.BackColor = System.Drawing.Color.DodgerBlue;
+            this.connection_status_label.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.connection_status_label.Location = new System.Drawing.Point(13, 66);
+            this.connection_status_label.Name = "connection_status_label";
+            this.connection_status_label.Size = new System.Drawing.Size(161, 32);
+            this.connection_status_label.TabIndex = 1;
+            this.connection_status_label.Text = "Disconnected";
+            // 
+            // connection_status_autoLabel
+            // 
+            this.connection_status_autoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.connection_status_autoLabel.Location = new System.Drawing.Point(0, 7);
+            this.connection_status_autoLabel.Name = "connection_status_autoLabel";
+            this.connection_status_autoLabel.Size = new System.Drawing.Size(88, 32);
+            this.connection_status_autoLabel.TabIndex = 0;
+            this.connection_status_autoLabel.Text = "Status:";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel3.Controls.Add(this.dbms_name_autolabel);
+            this.panel3.Controls.Add(this.dbms_name_label);
+            this.panel3.Location = new System.Drawing.Point(0, 144);
+            this.panel3.Name = "panel3";
+            this.gridLayout2.SetParticipateInLayout(this.panel3, true);
+            this.panel3.Size = new System.Drawing.Size(197, 142);
+            this.panel3.TabIndex = 2;
+            // 
+            // dbms_name_autolabel
+            // 
+            this.dbms_name_autolabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dbms_name_autolabel.ForeColor = System.Drawing.Color.White;
+            this.dbms_name_autolabel.Location = new System.Drawing.Point(1, 16);
+            this.dbms_name_autolabel.Name = "dbms_name_autolabel";
+            this.dbms_name_autolabel.Size = new System.Drawing.Size(88, 32);
+            this.dbms_name_autolabel.TabIndex = 1;
+            this.dbms_name_autolabel.Text = "DBMS:";
+            // 
+            // dbms_name_label
+            // 
+            this.dbms_name_label.AutoEllipsis = true;
+            this.dbms_name_label.AutoSize = true;
+            this.dbms_name_label.Font = new System.Drawing.Font("Segoe UI", 13.8F);
+            this.dbms_name_label.ForeColor = System.Drawing.Color.White;
+            this.dbms_name_label.Location = new System.Drawing.Point(13, 73);
+            this.dbms_name_label.Name = "dbms_name_label";
+            this.dbms_name_label.Size = new System.Drawing.Size(0, 32);
+            this.dbms_name_label.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.database_name_autolabel);
+            this.panel2.Controls.Add(this.database_name_label);
+            this.panel2.Location = new System.Drawing.Point(0, 286);
+            this.panel2.Name = "panel2";
+            this.gridLayout2.SetParticipateInLayout(this.panel2, true);
+            this.panel2.Size = new System.Drawing.Size(197, 142);
+            this.panel2.TabIndex = 1;
+            // 
+            // database_name_autolabel
+            // 
+            this.database_name_autolabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.database_name_autolabel.ForeColor = System.Drawing.Color.White;
+            this.database_name_autolabel.Location = new System.Drawing.Point(0, 14);
+            this.database_name_autolabel.Name = "database_name_autolabel";
+            this.database_name_autolabel.Size = new System.Drawing.Size(123, 32);
+            this.database_name_autolabel.TabIndex = 1;
+            this.database_name_autolabel.Text = "Database:";
+            // 
+            // database_name_label
+            // 
+            this.database_name_label.AutoEllipsis = true;
+            this.database_name_label.AutoSize = true;
+            this.database_name_label.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.database_name_label.ForeColor = System.Drawing.Color.White;
+            this.database_name_label.Location = new System.Drawing.Point(13, 75);
+            this.database_name_label.Name = "database_name_label";
+            this.database_name_label.Size = new System.Drawing.Size(0, 19);
+            this.database_name_label.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel1.Controls.Add(this.username_label);
+            this.panel1.Controls.Add(this.username_autolabel);
+            this.panel1.Location = new System.Drawing.Point(0, 428);
+            this.panel1.Name = "panel1";
+            this.gridLayout2.SetParticipateInLayout(this.panel1, true);
+            this.panel1.Size = new System.Drawing.Size(197, 142);
+            this.panel1.TabIndex = 0;
+            // 
+            // username_autolabel
+            // 
+            this.username_autolabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_autolabel.ForeColor = System.Drawing.Color.White;
+            this.username_autolabel.Location = new System.Drawing.Point(3, 18);
+            this.username_autolabel.Name = "username_autolabel";
+            this.username_autolabel.Size = new System.Drawing.Size(131, 32);
+            this.username_autolabel.TabIndex = 2;
+            this.username_autolabel.Text = "Username:";
             // 
             // gridLayout1
             // 
             this.gridLayout1.Columns = 3;
             this.gridLayout1.ContainerControl = this.splitContainer1.Panel1;
             this.gridLayout1.Rows = 2;
+            // 
+            // gridLayout2
+            // 
+            this.gridLayout2.Columns = 1;
+            this.gridLayout2.ContainerControl = this.splitContainer1.Panel2;
+            this.gridLayout2.Rows = 4;
+            // 
+            // username_label
+            // 
+            this.username_label.AutoEllipsis = true;
+            this.username_label.AutoSize = true;
+            this.username_label.Font = new System.Drawing.Font("Segoe UI Semibold", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_label.ForeColor = System.Drawing.Color.White;
+            this.username_label.Location = new System.Drawing.Point(13, 70);
+            this.username_label.Name = "username_label";
+            this.username_label.Size = new System.Drawing.Size(0, 31);
+            this.username_label.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -164,15 +315,22 @@
             this.DropShadow = true;
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "SQLGenerators";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLayout1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLayout2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -180,13 +338,25 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton connect_database_button;
         private Syncfusion.Windows.Forms.Tools.GridLayout gridLayout1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton2;
-        private Syncfusion.WinForms.Controls.SfButton sfButton3;
-        private Syncfusion.WinForms.Controls.SfButton sfButton4;
+        private Syncfusion.WinForms.Controls.SfButton gen_data_db_button;
+        private Syncfusion.WinForms.Controls.SfButton gen_proc_Button;
+        private Syncfusion.WinForms.Controls.SfButton gen_trigger_button;
         private Syncfusion.WinForms.Controls.SfButton sfButton5;
-        private Syncfusion.WinForms.Controls.SfButton sfButton6;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
+        private Syncfusion.WinForms.Controls.SfButton settings_Button;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label connection_status_label;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel connection_status_autoLabel;
+        private Syncfusion.Windows.Forms.Tools.GridLayout gridLayout2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel dbms_name_autolabel;
+        private System.Windows.Forms.Label dbms_name_label;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel database_name_autolabel;
+        private System.Windows.Forms.Label database_name_label;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel username_autolabel;
+        private System.Windows.Forms.Label username_label;
     }
 }

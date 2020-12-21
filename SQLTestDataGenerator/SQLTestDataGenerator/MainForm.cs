@@ -14,38 +14,67 @@ namespace SQLTestDataGenerator
 {
     public partial class MainForm : MetroForm
     {
-
+        public Configs _configs { get; set; }
         public MainForm()
         {
-            Syncfusion.Windows.Forms.CaptionLabel captionLabel1 = new Syncfusion.Windows.Forms.CaptionLabel();
+
+            SetStyle();
+            InitializeComponent();
+
+        }
+
+        public void SetStyle()
+        {
             this.CaptionBarHeight = 40;
             this.CaptionBarHeightMode = Syncfusion.Windows.Forms.Enums.CaptionBarHeightMode.SameAlwaysOnMaximize;
             this.CaptionAlign = HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(235)))), ((int)(((byte)(201)))));
             this.CaptionButtonColor = System.Drawing.Color.Black;
             this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(175)))), ((int)(((byte)(133)))));
-            InitializeComponent();
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            this._configs = new Configs();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            //Enables appearance settings
+            //this.gridLayout1.DpiAware = true;
             //NameGenerator _nameGenerator = new NameGenerator();
             //textBoxExt1.Text = _nameGenerator.GenerateLastName();
         }
 
-        private void textBoxExt1_TextChanged(object sender, EventArgs e)
+        private void connect_database_button_Click(object sender, EventArgs e)
         {
-
-            System.Diagnostics.Debug.WriteLine("heleloo");
+            DatabaseConnectForm databaseConnectForm = new DatabaseConnectForm(this);
+            databaseConnectForm.ShowDialog();
         }
 
-        private void sfButton1_Click(object sender, EventArgs e)
+        public void SetConnectionStatus(bool status)
         {
-            DatabaseConnectForm databaseConnectForm = new DatabaseConnectForm();
-            databaseConnectForm.ShowDialog();
+            if (status)
+            {
+                connection_status_label.Text = "Connected";
+                database_name_label.Text = _configs.databaseName;
+                username_label.Text = _configs.username;
+                dbms_name_label.Text = _configs.serverName;
+            }
+            else
+            {
+                connection_status_label.Text = "Disconnected";
+            }
+        }
 
+        private void gen_data_db_button_Click(object sender, EventArgs e)
+        {
+            GenerateDataForm generateDataForm = new GenerateDataForm(this);
+            generateDataForm.ShowDialog();
+            
+        }
+
+        private void gen_proc_Button_Click(object sender, EventArgs e)
+        {
+            GenerateProcedureForm generateProcedureForm= new GenerateProcedureForm(this);
+            generateProcedureForm.ShowDialog();
         }
     }
 }

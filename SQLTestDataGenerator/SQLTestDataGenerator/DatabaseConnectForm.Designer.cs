@@ -49,6 +49,9 @@
             this.autoLabel1 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.servername_textbox = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.gridLayout1 = new Syncfusion.Windows.Forms.Tools.GridLayout(this.components);
+            this.server_textbox_errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.database_name_errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.port_ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,6 +62,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.databasename_textbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servername_textbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLayout1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.server_textbox_errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database_name_errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.port_ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -90,18 +96,18 @@
             this.splitContainer1.Panel2.Controls.Add(this.port_textbox);
             this.splitContainer1.Panel2.Controls.Add(this.databasename_textbox);
             this.splitContainer1.Panel2.Controls.Add(this.servername_textbox);
-            this.splitContainer1.Size = new System.Drawing.Size(821, 529);
-            this.splitContainer1.SplitterDistance = 213;
+            this.splitContainer1.Size = new System.Drawing.Size(825, 545);
+            this.splitContainer1.SplitterDistance = 214;
             this.splitContainer1.TabIndex = 0;
             // 
             // dbms_mssql_button
             // 
             this.dbms_mssql_button.AccessibleName = "Button";
             this.dbms_mssql_button.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.dbms_mssql_button.Location = new System.Drawing.Point(0, 2);
+            this.dbms_mssql_button.Location = new System.Drawing.Point(0, 0);
             this.dbms_mssql_button.Name = "dbms_mssql_button";
             this.gridLayout1.SetParticipateInLayout(this.dbms_mssql_button, true);
-            this.dbms_mssql_button.Size = new System.Drawing.Size(213, 105);
+            this.dbms_mssql_button.Size = new System.Drawing.Size(214, 109);
             this.dbms_mssql_button.TabIndex = 0;
             this.dbms_mssql_button.Text = "MSSQL";
             this.dbms_mssql_button.Click += new System.EventHandler(this.dbms_mssql_button_Click);
@@ -110,10 +116,10 @@
             // 
             this.dbms_oracle_button.AccessibleName = "Button";
             this.dbms_oracle_button.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.dbms_oracle_button.Location = new System.Drawing.Point(0, 107);
+            this.dbms_oracle_button.Location = new System.Drawing.Point(0, 109);
             this.dbms_oracle_button.Name = "dbms_oracle_button";
             this.gridLayout1.SetParticipateInLayout(this.dbms_oracle_button, true);
-            this.dbms_oracle_button.Size = new System.Drawing.Size(213, 105);
+            this.dbms_oracle_button.Size = new System.Drawing.Size(214, 109);
             this.dbms_oracle_button.TabIndex = 1;
             this.dbms_oracle_button.Text = "Oracle";
             this.dbms_oracle_button.Click += new System.EventHandler(this.dbms_oracle_button_Click);
@@ -122,10 +128,10 @@
             // 
             this.dbms_mysql_button.AccessibleName = "Button";
             this.dbms_mysql_button.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.dbms_mysql_button.Location = new System.Drawing.Point(0, 212);
+            this.dbms_mysql_button.Location = new System.Drawing.Point(0, 218);
             this.dbms_mysql_button.Name = "dbms_mysql_button";
             this.gridLayout1.SetParticipateInLayout(this.dbms_mysql_button, true);
-            this.dbms_mysql_button.Size = new System.Drawing.Size(213, 105);
+            this.dbms_mysql_button.Size = new System.Drawing.Size(214, 109);
             this.dbms_mysql_button.TabIndex = 2;
             this.dbms_mysql_button.Text = "MySQL";
             this.dbms_mysql_button.Click += new System.EventHandler(this.dbms_mysql_button_Click);
@@ -134,10 +140,10 @@
             // 
             this.dbms_sqlite_button.AccessibleName = "Button";
             this.dbms_sqlite_button.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.dbms_sqlite_button.Location = new System.Drawing.Point(0, 317);
+            this.dbms_sqlite_button.Location = new System.Drawing.Point(0, 327);
             this.dbms_sqlite_button.Name = "dbms_sqlite_button";
             this.gridLayout1.SetParticipateInLayout(this.dbms_sqlite_button, true);
-            this.dbms_sqlite_button.Size = new System.Drawing.Size(213, 105);
+            this.dbms_sqlite_button.Size = new System.Drawing.Size(214, 109);
             this.dbms_sqlite_button.TabIndex = 3;
             this.dbms_sqlite_button.Text = "SQLite";
             this.dbms_sqlite_button.Click += new System.EventHandler(this.dbms_sqlite_button_Click);
@@ -146,10 +152,10 @@
             // 
             this.dbms_postgresql_button.AccessibleName = "Button";
             this.dbms_postgresql_button.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.dbms_postgresql_button.Location = new System.Drawing.Point(0, 422);
+            this.dbms_postgresql_button.Location = new System.Drawing.Point(0, 436);
             this.dbms_postgresql_button.Name = "dbms_postgresql_button";
             this.gridLayout1.SetParticipateInLayout(this.dbms_postgresql_button, true);
-            this.dbms_postgresql_button.Size = new System.Drawing.Size(213, 105);
+            this.dbms_postgresql_button.Size = new System.Drawing.Size(214, 109);
             this.dbms_postgresql_button.TabIndex = 4;
             this.dbms_postgresql_button.Text = "PostgreSql";
             this.dbms_postgresql_button.Click += new System.EventHandler(this.dbms_postgresql_button_Click);
@@ -166,6 +172,7 @@
             this.databaseconnect_button.TabIndex = 12;
             this.databaseconnect_button.Text = "Connect";
             this.databaseconnect_button.UseVisualStyleBackColor = false;
+            this.databaseconnect_button.Click += new System.EventHandler(this.databaseconnect_button_Click);
             // 
             // autoLabel6
             // 
@@ -203,8 +210,10 @@
             this.password_textbox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.password_textbox.Location = new System.Drawing.Point(201, 336);
             this.password_textbox.Name = "password_textbox";
+            this.password_textbox.PasswordChar = '●';
             this.password_textbox.Size = new System.Drawing.Size(338, 34);
             this.password_textbox.TabIndex = 4;
+            this.password_textbox.UseSystemPasswordChar = true;
             // 
             // autoLabel4
             // 
@@ -245,6 +254,7 @@
             this.port_textbox.Name = "port_textbox";
             this.port_textbox.Size = new System.Drawing.Size(338, 34);
             this.port_textbox.TabIndex = 2;
+            this.port_textbox.TextChanged += new System.EventHandler(this.port_textbox_TextChanged);
             // 
             // autoLabel2
             // 
@@ -265,6 +275,7 @@
             this.databasename_textbox.Name = "databasename_textbox";
             this.databasename_textbox.Size = new System.Drawing.Size(338, 34);
             this.databasename_textbox.TabIndex = 1;
+            this.databasename_textbox.TextChanged += new System.EventHandler(this.databasename_textbox_TextChanged);
             // 
             // autoLabel1
             // 
@@ -285,6 +296,7 @@
             this.servername_textbox.Name = "servername_textbox";
             this.servername_textbox.Size = new System.Drawing.Size(338, 34);
             this.servername_textbox.TabIndex = 0;
+            this.servername_textbox.TextChanged += new System.EventHandler(this.servername_textbox_TextChanged);
             // 
             // gridLayout1
             // 
@@ -292,12 +304,26 @@
             this.gridLayout1.ContainerControl = this.splitContainer1.Panel1;
             this.gridLayout1.Rows = 5;
             // 
+            // server_textbox_errorProvider
+            // 
+            this.server_textbox_errorProvider.ContainerControl = this;
+            // 
+            // database_name_errorProvider
+            // 
+            this.database_name_errorProvider.ContainerControl = this;
+            // 
+            // port_ErrorProvider
+            // 
+            this.port_ErrorProvider.ContainerControl = this;
+            // 
             // DatabaseConnectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 533);
+            this.ClientSize = new System.Drawing.Size(829, 549);
             this.Controls.Add(this.splitContainer1);
+            this.MaximumSize = new System.Drawing.Size(845, 588);
+            this.MinimumSize = new System.Drawing.Size(845, 588);
             this.Name = "DatabaseConnectForm";
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
@@ -313,6 +339,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.databasename_textbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.servername_textbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLayout1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.server_textbox_errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database_name_errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.port_ErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -339,5 +368,8 @@
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel6;
         private System.Windows.Forms.CheckBox integratedsecurity_checkbox;
         private Syncfusion.WinForms.Controls.SfButton databaseconnect_button;
+        private System.Windows.Forms.ErrorProvider server_textbox_errorProvider;
+        private System.Windows.Forms.ErrorProvider database_name_errorProvider;
+        private System.Windows.Forms.ErrorProvider port_ErrorProvider;
     }
 }

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SQLTestDataGenerator
 {
@@ -51,36 +54,81 @@ namespace SQLTestDataGenerator
 
         public string ConnectionStringBuilder()
         {
+            var cnString = "";
             if (DBMS == (int)Enums.EnumDBMS.MSSQL)
             {
-                var cnString = $"Server={this.serverName};Database={this.databaseName};User Id={this.username};Password={this.password};";
-                return "";
-
+                cnString = $"Server={this.serverName};Database={this.databaseName};User Id={this.username};Password={this.password}; Trusted_Connection= { this.IntegratedSecurity}";
             }
             else if (DBMS == (int)Enums.EnumDBMS.MySQL)
             {
-                return "";
+                
 
             }
             else if (DBMS == (int)Enums.EnumDBMS.Oracle)
             {
-                return "";
+            
 
             }
             else if (DBMS == (int)Enums.EnumDBMS.PostgreSql)
             {
-                return "";
+            
 
             }
             else if (DBMS == (int)Enums.EnumDBMS.SQLite)
             {
-                return "";
+            
 
             }
             else
             {
-                return "";
+            
             }
+            return cnString;
+        }
+
+        public bool TestConnection(string connectionString)
+        {
+            if (DBMS == (int)Enums.EnumDBMS.MSSQL)
+            {
+                SqlConnection _connection = new SqlConnection(connectionString);
+                try
+                {
+                    _connection.Open();
+                    MessageBox.Show("Connected");
+                    _connection.Close();
+                    return true;
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            else if (DBMS == (int)Enums.EnumDBMS.MySQL)
+            {
+
+
+            }
+            else if (DBMS == (int)Enums.EnumDBMS.Oracle)
+            {
+
+
+            }
+            else if (DBMS == (int)Enums.EnumDBMS.PostgreSql)
+            {
+
+
+            }
+            else if (DBMS == (int)Enums.EnumDBMS.SQLite)
+            {
+
+
+            }
+            else
+            {
+
+            }
+            return false;
+
         }
     }
 }
