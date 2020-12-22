@@ -1,0 +1,1 @@
+" INSERT INTO KHACHHANG(Ma, Ten, GioiTinh, SoCMT, SoDienThoai, Email) values (@Ma varchar(10), @Ten nvarchar(40), @GioiTinh bit, @SoCMT varchar(15), @SoDienThoai varchar(15), @Email varchar(100))"

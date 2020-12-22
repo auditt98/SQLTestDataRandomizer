@@ -15,6 +15,7 @@ namespace SQLTestDataGenerator
     public partial class MainForm : MetroForm
     {
         public Configs _configs { get; set; }
+        public List<TableModel> _tables { get; set; }
         public MainForm()
         {
 
@@ -36,11 +37,8 @@ namespace SQLTestDataGenerator
         private void MainForm_Load(object sender, EventArgs e)
         {
             this._configs = new Configs();
+            this._tables = new List<TableModel>();
             this.AutoScaleMode = AutoScaleMode.Dpi;
-            //Enables appearance settings
-            //this.gridLayout1.DpiAware = true;
-            //NameGenerator _nameGenerator = new NameGenerator();
-            //textBoxExt1.Text = _nameGenerator.GenerateLastName();
         }
 
         private void connect_database_button_Click(object sender, EventArgs e)

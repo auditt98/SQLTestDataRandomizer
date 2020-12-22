@@ -23,7 +23,7 @@ namespace SQLTestDataGenerator
 
         public Configs()
         {
-
+            this.DBMS = 0;
         }
 
         /// <summary>

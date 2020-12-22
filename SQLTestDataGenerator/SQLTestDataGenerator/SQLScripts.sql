@@ -23,4 +23,9 @@ where TABLE_TYPE = 'BASE TABLE' and TABLE_NAME not in (
 	WHERE fKey.parent_object_id IS NULL
 );
 
+
+--select all tables and its fk
+select TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+where CONSTRAINT_TYPE = 'FOREIGN KEY'
+
 ------------------------------------------------------------------------------

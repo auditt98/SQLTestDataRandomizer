@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 
 using System.Text;
@@ -84,6 +85,13 @@ namespace SQLTestDataGenerator
                 isError = true;
 
             }
+            if(mainForm._configs.DBMS == 0)
+            {
+                isError = true;
+                MessageBox.Show("Please choose a DBMS to connect to", "Error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             if (!isError)
             {
                 mainForm._configs.databaseName = databasename_textbox.Text;
@@ -115,8 +123,102 @@ namespace SQLTestDataGenerator
                 }
                 mainForm._configs.IntegratedSecurity = integratedsecurity_checkbox.Checked;
                 var cString = mainForm._configs.ConnectionStringBuilder();
-                mainForm._configs.TestConnection(cString);
-                mainForm.SetConnectionStatus(true);
+
+                var _connection = new SqlConnection(cString);
+                try
+                {
+                    _connection.Open();
+                    string selectTable = @"
+                        SELECT TABLE_NAME FROM information_schema.tables
+                        where TABLE_TYPE = 'BASE TABLE';";
+                    SqlCommand sqlCommand = new SqlCommand(selectTable, _connection);
+                    using (SqlDataReader dr = sqlCommand.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var table = new TableModel();
+                            table.TABLE_NAME = dr["TABLE_NAME"].ToString();
+                            mainForm._tables.Add(table);
+                        }
+                    }
+
+                    foreach(var table in mainForm._tables)
+                    {
+                        string selectColumns = $@"
+                         select COLUMN_NAME,IS_NULLABLE,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE, (select columnproperty(object_id('{table.TABLE_NAME}'), COLUMN_NAME ,'IsIdentity')) as IS_IDENTITY from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = '{table.TABLE_NAME}'";
+                        sqlCommand = new SqlCommand(selectColumns, _connection);
+                        using (SqlDataReader dr = sqlCommand.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                var column = new ColumnModel();
+                                column.COLUMN_NAME = dr["COLUMN_NAME"].ToString();
+                                column.DATA_TYPE = dr["DATA_TYPE"].ToString();
+                                column.IS_IDENTITY = int.Parse(dr["IS_IDENTITY"].ToString());
+                                
+                                if(dr["CHARACTER_MAXIMUM_LENGTH"].ToString().Length != 0)
+                                {
+                                    column.CHARACTER_MAXIMUM_LENGTH = dr["CHARACTER_MAXIMUM_LENGTH"].ToString();
+                                }
+                                else
+                                {
+                                    column.CHARACTER_MAXIMUM_LENGTH = "";
+                                }
+                                if(dr["IS_NULLABLE"].ToString() == "YES")
+                                {
+                                    column.IS_NULLABLE = true;
+                                }
+                                else
+                                {
+                                    column.IS_NULLABLE = false;
+                                }
+                                
+                                if(dr["NUMERIC_PRECISION"].ToString().Length != 0)
+                                {
+                                    column.NUMERIC_PRECISION = dr["NUMERIC_PRECISION"].ToString();
+                                }
+
+                                if (dr["NUMERIC_SCALE"].ToString().Length != 0)
+                                {
+                                    column.NUMERIC_SCALE = dr["NUMERIC_SCALE"].ToString();
+                                }
+
+                                if (column.DATA_TYPE.ToLower() == "varchar" || column.DATA_TYPE.ToLower() == "nvarchar")
+                                {
+                                    if(column.CHARACTER_MAXIMUM_LENGTH == "-1")
+                                    {
+                                        column.Parameter = $@"@{column.COLUMN_NAME} {column.DATA_TYPE}(MAX)";
+                                    }
+                                    else
+                                    {
+                                        column.Parameter = $@"@{column.COLUMN_NAME} {column.DATA_TYPE}({column.CHARACTER_MAXIMUM_LENGTH})";
+                                    }
+
+                                }
+                                else if(column.DATA_TYPE.ToLower() == "decimal" || column.DATA_TYPE.ToLower() == "numeric")
+                                {
+                                    column.Parameter = $@"@{column.COLUMN_NAME} {column.DATA_TYPE}({column.NUMERIC_PRECISION},{column.NUMERIC_SCALE})";
+                                }
+                                else
+                                {
+                                    column.Parameter = $@"@{column.COLUMN_NAME} {column.DATA_TYPE}";
+                                }
+                                column.Variable = $@"@{column.COLUMN_NAME}";
+                                
+                                table.Columns.Add(column);
+                            }
+                        }
+
+                    }
+                    mainForm.SetConnectionStatus(true);
+                    MessageBox.Show("Connected", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _connection.Close();
+                    
+                }
+                catch
+                {
+                    throw;
+                }
                 this.Close();
             }
         }
