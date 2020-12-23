@@ -129,8 +129,16 @@ namespace SQLTestDataGenerator
                 {
                     _connection.Open();
                     string selectTable = @"
-                        SELECT TABLE_NAME FROM information_schema.tables
-                        where TABLE_TYPE = 'BASE TABLE';";
+                        select INFORMATION_SCHEMA.TABLES.TABLE_NAME, COUNT(CONSTRAINT_TYPE) as 'FK_COUNT' from INFORMATION_SCHEMA.TABLES
+left join
+	(
+		select TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE from INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+		where CONSTRAINT_TYPE = 'FOREIGN KEY'
+	) a
+on INFORMATION_SCHEMA.TABLES.TABLE_NAME = a.TABLE_NAME
+where INFORMATION_SCHEMA.TABLES.TABLE_TYPE = 'BASE TABLE'
+group by INFORMATION_SCHEMA.TABLES.TABLE_NAME
+order by FK_COUNT";
                     SqlCommand sqlCommand = new SqlCommand(selectTable, _connection);
                     using (SqlDataReader dr = sqlCommand.ExecuteReader())
                     {
@@ -138,6 +146,7 @@ namespace SQLTestDataGenerator
                         {
                             var table = new TableModel();
                             table.TABLE_NAME = dr["TABLE_NAME"].ToString();
+                            table.FK_COUNT = int.Parse(dr["FK_COUNT"].ToString());
                             mainForm._tables.Add(table);
                         }
                     }
@@ -221,7 +230,7 @@ namespace SQLTestDataGenerator
                 }
                 this.Close();
             }
-        }
+        }   
 
         private void servername_textbox_TextChanged(object sender, EventArgs e)
         {

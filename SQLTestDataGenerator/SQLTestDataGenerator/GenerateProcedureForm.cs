@@ -259,12 +259,6 @@ namespace SQLTestDataGenerator
                         }
                     }
                 }
-
-                //foreach(var col in table.Columns)
-                //{
-                //    colString = colString + col.COLUMN_NAME + ", ";
-                //    paramString = paramString + col.Parameter + ", ";
-                //}
                 var insertProc =
                     $"CREATE PROCEDURE proc_INSERT_{table.TABLE_NAME} {paramString} as begin INSERT INTO {table.TABLE_NAME}({colString}) values ({varString}) end;\r\ngo";
                 generatedProcs.Add(insertProc);
@@ -342,7 +336,6 @@ namespace SQLTestDataGenerator
                 }
                 MessageBox.Show("Export complete", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
     }
 }

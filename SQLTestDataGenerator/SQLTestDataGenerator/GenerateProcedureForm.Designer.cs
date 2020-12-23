@@ -29,45 +29,12 @@
         private void InitializeComponent()
         {
             Syncfusion.Windows.Forms.Tools.TreeNodeAdvStyleInfo treeNodeAdvStyleInfo1 = new Syncfusion.Windows.Forms.Tools.TreeNodeAdvStyleInfo();
-            this.export_to_sql_btn = new Syncfusion.WinForms.Controls.SfButton();
-            this.generate_proc_button = new Syncfusion.WinForms.Controls.SfButton();
             this.treeViewAdv1 = new Syncfusion.Windows.Forms.Tools.TreeViewAdv();
             this.sql_save_dialog = new System.Windows.Forms.SaveFileDialog();
+            this.generate_proc_button = new System.Windows.Forms.Button();
+            this.export_to_sql_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewAdv1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // export_to_sql_btn
-            // 
-            this.export_to_sql_btn.AccessibleName = "Button";
-            this.export_to_sql_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(170)))), ((int)(((byte)(168)))));
-            this.export_to_sql_btn.CanApplyTheme = false;
-            this.export_to_sql_btn.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.export_to_sql_btn.ForeColor = System.Drawing.Color.White;
-            this.export_to_sql_btn.Location = new System.Drawing.Point(514, 286);
-            this.export_to_sql_btn.Name = "export_to_sql_btn";
-            this.export_to_sql_btn.Size = new System.Drawing.Size(244, 54);
-            this.export_to_sql_btn.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(170)))), ((int)(((byte)(168)))));
-            this.export_to_sql_btn.Style.ForeColor = System.Drawing.Color.White;
-            this.export_to_sql_btn.TabIndex = 0;
-            this.export_to_sql_btn.Text = "Export To SQL File";
-            this.export_to_sql_btn.UseVisualStyleBackColor = false;
-            this.export_to_sql_btn.Click += new System.EventHandler(this.export_to_sql_btn_Click);
-            // 
-            // generate_proc_button
-            // 
-            this.generate_proc_button.AccessibleName = "Button";
-            this.generate_proc_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(175)))), ((int)(((byte)(133)))));
-            this.generate_proc_button.Font = new System.Drawing.Font("Segoe UI", 13.8F);
-            this.generate_proc_button.ForeColor = System.Drawing.Color.White;
-            this.generate_proc_button.Location = new System.Drawing.Point(514, 167);
-            this.generate_proc_button.Name = "generate_proc_button";
-            this.generate_proc_button.Size = new System.Drawing.Size(244, 54);
-            this.generate_proc_button.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(175)))), ((int)(((byte)(133)))));
-            this.generate_proc_button.Style.ForeColor = System.Drawing.Color.White;
-            this.generate_proc_button.TabIndex = 1;
-            this.generate_proc_button.Text = "Generate Procedure";
-            this.generate_proc_button.UseVisualStyleBackColor = false;
-            this.generate_proc_button.Click += new System.EventHandler(this.generate_proc_button_Click);
             // 
             // treeViewAdv1
             // 
@@ -100,6 +67,8 @@
             this.treeViewAdv1.Size = new System.Drawing.Size(497, 472);
             this.treeViewAdv1.TabIndex = 2;
             this.treeViewAdv1.Text = "treeViewAdv1";
+            this.treeViewAdv1.ThemeStyle.TreeNodeAdvStyle.CheckBoxTickThickness = 0;
+            this.treeViewAdv1.ThemeStyle.TreeNodeAdvStyle.EnsureDefaultOptionedChild = true;
             // 
             // 
             // 
@@ -110,14 +79,42 @@
             this.treeViewAdv1.ToolTipControl.TabIndex = 0;
             this.treeViewAdv1.ToolTipControl.Visible = true;
             // 
+            // generate_proc_button
+            // 
+            this.generate_proc_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(175)))), ((int)(((byte)(133)))));
+            this.generate_proc_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.generate_proc_button.Font = new System.Drawing.Font("Segoe UI", 13.8F);
+            this.generate_proc_button.ForeColor = System.Drawing.Color.White;
+            this.generate_proc_button.Location = new System.Drawing.Point(514, 174);
+            this.generate_proc_button.Name = "generate_proc_button";
+            this.generate_proc_button.Size = new System.Drawing.Size(244, 54);
+            this.generate_proc_button.TabIndex = 3;
+            this.generate_proc_button.Text = "Generate Procedure";
+            this.generate_proc_button.UseVisualStyleBackColor = false;
+            this.generate_proc_button.Click += new System.EventHandler(this.generate_proc_button_Click);
+            // 
+            // export_to_sql_btn
+            // 
+            this.export_to_sql_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(170)))), ((int)(((byte)(168)))));
+            this.export_to_sql_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.export_to_sql_btn.Font = new System.Drawing.Font("Segoe UI", 13.8F);
+            this.export_to_sql_btn.ForeColor = System.Drawing.Color.White;
+            this.export_to_sql_btn.Location = new System.Drawing.Point(514, 291);
+            this.export_to_sql_btn.Name = "export_to_sql_btn";
+            this.export_to_sql_btn.Size = new System.Drawing.Size(244, 54);
+            this.export_to_sql_btn.TabIndex = 4;
+            this.export_to_sql_btn.Text = "Export To SQL File";
+            this.export_to_sql_btn.UseVisualStyleBackColor = false;
+            this.export_to_sql_btn.Click += new System.EventHandler(this.export_to_sql_btn_Click);
+            // 
             // GenerateProcedureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 482);
-            this.Controls.Add(this.treeViewAdv1);
-            this.Controls.Add(this.generate_proc_button);
             this.Controls.Add(this.export_to_sql_btn);
+            this.Controls.Add(this.generate_proc_button);
+            this.Controls.Add(this.treeViewAdv1);
             this.MaximumSize = new System.Drawing.Size(824, 521);
             this.MinimumSize = new System.Drawing.Size(824, 521);
             this.Name = "GenerateProcedureForm";
@@ -131,10 +128,9 @@
         }
 
         #endregion
-
-        private Syncfusion.WinForms.Controls.SfButton export_to_sql_btn;
-        private Syncfusion.WinForms.Controls.SfButton generate_proc_button;
         private Syncfusion.Windows.Forms.Tools.TreeViewAdv treeViewAdv1;
         private System.Windows.Forms.SaveFileDialog sql_save_dialog;
+        private System.Windows.Forms.Button generate_proc_button;
+        private System.Windows.Forms.Button export_to_sql_btn;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 
 using System.Text;
@@ -14,10 +15,12 @@ namespace SQLTestDataGenerator
     public partial class GenerateDataForm : SfForm
     {
         private MainForm mainForm = null;
+        private List<TableModel> insertedTables = null;
         public GenerateDataForm()
         {
-            InitializeComponent();
             SetStyle();
+            //this.
+            InitializeComponent();
 
         }
 
@@ -26,6 +29,7 @@ namespace SQLTestDataGenerator
             this.mainForm = form as MainForm;
             InitializeComponent();
             SetStyle();
+            this.insertedTables = mainForm._tables;
         }
         public void SetStyle()
         {
@@ -42,6 +46,20 @@ namespace SQLTestDataGenerator
             this.Style.TitleBar.Font = this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Style.TitleBar.TextHorizontalAlignment = HorizontalAlignment.Center;
             this.Style.TitleBar.TextVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
+
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.generate_data_button.BackColor = Color.FromArgb(112, 175, 133);
+        }
+
+        private void generate_data_button_Click(object sender, EventArgs e)
+        {
+            while(insertedTables.Count > 0)
+            {
+                string cnString = mainForm._configs.ConnectionStringBuilder();
+                SqlConnection connection = new SqlConnection(cnString);
+
+            }
         }
     }
 }

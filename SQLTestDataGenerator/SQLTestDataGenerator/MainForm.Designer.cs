@@ -33,7 +33,6 @@
             this.connect_database_button = new Syncfusion.WinForms.Controls.SfButton();
             this.gen_data_db_button = new Syncfusion.WinForms.Controls.SfButton();
             this.gen_proc_Button = new Syncfusion.WinForms.Controls.SfButton();
-            this.gen_trigger_button = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
             this.settings_Button = new Syncfusion.WinForms.Controls.SfButton();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -46,10 +45,10 @@
             this.database_name_autolabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.database_name_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.username_label = new System.Windows.Forms.Label();
             this.username_autolabel = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.gridLayout1 = new Syncfusion.Windows.Forms.Tools.GridLayout(this.components);
             this.gridLayout2 = new Syncfusion.Windows.Forms.Tools.GridLayout(this.components);
-            this.username_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,7 +72,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.connect_database_button);
             this.splitContainer1.Panel1.Controls.Add(this.gen_data_db_button);
             this.splitContainer1.Panel1.Controls.Add(this.gen_proc_Button);
-            this.splitContainer1.Panel1.Controls.Add(this.gen_trigger_button);
             this.splitContainer1.Panel1.Controls.Add(this.sfButton5);
             this.splitContainer1.Panel1.Controls.Add(this.settings_Button);
             // 
@@ -130,23 +128,12 @@
             this.gen_proc_Button.Text = "Generate Procedure";
             this.gen_proc_Button.Click += new System.EventHandler(this.gen_proc_Button_Click);
             // 
-            // gen_trigger_button
-            // 
-            this.gen_trigger_button.AccessibleName = "Button";
-            this.gen_trigger_button.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.gen_trigger_button.Location = new System.Drawing.Point(1, 286);
-            this.gen_trigger_button.Name = "gen_trigger_button";
-            this.gridLayout1.SetParticipateInLayout(this.gen_trigger_button, true);
-            this.gen_trigger_button.Size = new System.Drawing.Size(276, 285);
-            this.gen_trigger_button.TabIndex = 3;
-            this.gen_trigger_button.Text = "Generate Trigger";
-            // 
             // sfButton5
             // 
             this.sfButton5.AccessibleName = "Button";
             this.sfButton5.AllowWrapText = true;
             this.sfButton5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton5.Location = new System.Drawing.Point(277, 286);
+            this.sfButton5.Location = new System.Drawing.Point(1, 286);
             this.sfButton5.Name = "sfButton5";
             this.gridLayout1.SetParticipateInLayout(this.sfButton5, true);
             this.sfButton5.Size = new System.Drawing.Size(276, 285);
@@ -157,7 +144,7 @@
             // 
             this.settings_Button.AccessibleName = "Button";
             this.settings_Button.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settings_Button.Location = new System.Drawing.Point(553, 286);
+            this.settings_Button.Location = new System.Drawing.Point(277, 286);
             this.settings_Button.Name = "settings_Button";
             this.gridLayout1.SetParticipateInLayout(this.settings_Button, true);
             this.settings_Button.Size = new System.Drawing.Size(276, 285);
@@ -273,6 +260,17 @@
             this.panel1.Size = new System.Drawing.Size(197, 142);
             this.panel1.TabIndex = 0;
             // 
+            // username_label
+            // 
+            this.username_label.AutoEllipsis = true;
+            this.username_label.AutoSize = true;
+            this.username_label.Font = new System.Drawing.Font("Segoe UI Semibold", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_label.ForeColor = System.Drawing.Color.White;
+            this.username_label.Location = new System.Drawing.Point(13, 70);
+            this.username_label.Name = "username_label";
+            this.username_label.Size = new System.Drawing.Size(0, 30);
+            this.username_label.TabIndex = 3;
+            // 
             // username_autolabel
             // 
             this.username_autolabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -295,17 +293,6 @@
             this.gridLayout2.ContainerControl = this.splitContainer1.Panel2;
             this.gridLayout2.Rows = 4;
             // 
-            // username_label
-            // 
-            this.username_label.AutoEllipsis = true;
-            this.username_label.AutoSize = true;
-            this.username_label.Font = new System.Drawing.Font("Segoe UI Semibold", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_label.ForeColor = System.Drawing.Color.White;
-            this.username_label.Location = new System.Drawing.Point(13, 70);
-            this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(0, 31);
-            this.username_label.TabIndex = 3;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -314,7 +301,11 @@
             this.Controls.Add(this.splitContainer1);
             this.DropShadow = true;
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximumSize = new System.Drawing.Size(1042, 612);
             this.Name = "MainForm";
+            this.ShowMaximizeBox = false;
+            this.ShowMouseOver = true;
             this.Text = "SQLGenerators";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -342,7 +333,6 @@
         private Syncfusion.Windows.Forms.Tools.GridLayout gridLayout1;
         private Syncfusion.WinForms.Controls.SfButton gen_data_db_button;
         private Syncfusion.WinForms.Controls.SfButton gen_proc_Button;
-        private Syncfusion.WinForms.Controls.SfButton gen_trigger_button;
         private Syncfusion.WinForms.Controls.SfButton sfButton5;
         private Syncfusion.WinForms.Controls.SfButton settings_Button;
         private System.Windows.Forms.Panel panel4;
