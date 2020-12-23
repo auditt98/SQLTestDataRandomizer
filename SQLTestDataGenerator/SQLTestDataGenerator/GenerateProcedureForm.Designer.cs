@@ -32,7 +32,7 @@
             this.export_to_sql_btn = new Syncfusion.WinForms.Controls.SfButton();
             this.generate_proc_button = new Syncfusion.WinForms.Controls.SfButton();
             this.treeViewAdv1 = new Syncfusion.Windows.Forms.Tools.TreeViewAdv();
-            this.sql_save_button = new System.Windows.Forms.SaveFileDialog();
+            this.sql_save_dialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewAdv1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,6 +135,6 @@
         private Syncfusion.WinForms.Controls.SfButton export_to_sql_btn;
         private Syncfusion.WinForms.Controls.SfButton generate_proc_button;
         private Syncfusion.Windows.Forms.Tools.TreeViewAdv treeViewAdv1;
-        private System.Windows.Forms.SaveFileDialog sql_save_button;
+        private System.Windows.Forms.SaveFileDialog sql_save_dialog;
     }
 }

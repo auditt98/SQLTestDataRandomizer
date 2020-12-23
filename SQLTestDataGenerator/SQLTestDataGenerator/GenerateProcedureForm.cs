@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools.MultiColumnTreeView;
 using Syncfusion.WinForms.Controls;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
+//using Microsoft.SqlServer.Management.Common;
 
 namespace SQLTestDataGenerator
 {
@@ -111,20 +115,20 @@ namespace SQLTestDataGenerator
         {
             var generatedProcs = new List<string>();
             //check for clicked treenodes
-            
+
             //do actual work 
-            foreach(var table in mainForm._tables)
+            foreach (var table in mainForm._tables)
             {
                 //insert
                 var colString = "";
                 var paramString = "";
                 var varString = "";
-                for(int i = 0; i < table.Columns.Count; i++)
+                for (int i = 0; i < table.Columns.Count; i++)
                 {
                     //check if last column
-                    if(i != table.Columns.Count - 1)
+                    if (i != table.Columns.Count - 1)
                     {
-                        if(table.Columns[i].IS_IDENTITY != 1)
+                        if (table.Columns[i].IS_IDENTITY != 1)
                         {
                             colString = colString + table.Columns[i].COLUMN_NAME + ", ";
                             paramString = paramString + table.Columns[i].Parameter + ", ";
@@ -148,7 +152,7 @@ namespace SQLTestDataGenerator
                 //    paramString = paramString + col.Parameter + ", ";
                 //}
                 var insertProc =
-                    $@"CREATE PROCEDURE sp_INSERT_{table.TABLE_NAME} {paramString} as begin INSERT INTO {table.TABLE_NAME}({colString}) values ({varString}) end;";
+                    $"CREATE PROCEDURE proc_INSERT_{table.TABLE_NAME} {paramString} as begin INSERT INTO {table.TABLE_NAME}({colString}) values ({varString}) end;\r\ngo";
                 generatedProcs.Add(insertProc);
 
                 paramString = "";
@@ -167,17 +171,17 @@ namespace SQLTestDataGenerator
                         paramString = paramString + table.Columns[i].Parameter;
                     }
                 }
-
-                if (table.Columns.Select(c => c.COLUMN_NAME == "ID" || c.COLUMN_NAME == "id").Any())
+                List<ColumnModel> isID = table.Columns.Where(c => c.COLUMN_NAME.ToLower() == "id").ToList();
+                if (isID.Count != 0)
                 {
                     for (int i = 0; i < table.Columns.Count; i++)
                     {
                         //if its not the last column
                         if (i != table.Columns.Count - 1)
                         {
-                            if(table.Columns[i].COLUMN_NAME.ToLower() != "id")
+                            if (table.Columns[i].COLUMN_NAME.ToLower() != "id")
                             {
-                                varString = varString + $@"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}, ";
+                                varString = varString + $"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}, ";
                             }
 
                         }
@@ -185,26 +189,40 @@ namespace SQLTestDataGenerator
                         {
                             if (table.Columns[i].COLUMN_NAME.ToLower() != "id")
                             {
-                                varString = varString + $@"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}";
+                                varString = varString + $"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}";
                             }
                         }
                     }
                     var updateProc =
-                    $@"CREATE PROCEDURE sp_UPDATE_{table.TABLE_NAME} {paramString} as begin UPDATE {table.TABLE_NAME} set {varString} where ID = @ID end;";
+                    $"CREATE PROCEDURE proc_UPDATE_{table.TABLE_NAME} {paramString} as begin UPDATE {table.TABLE_NAME} set {varString} where ID = @ID end;\r\ngo";
                     generatedProcs.Add(updateProc);
+                    //delete
+                    var deleteProc = $"CREATE PROCEDURE proc_DELETE_{table.TABLE_NAME} @ID int as begin delete from {table.TABLE_NAME} where ID = @ID end;\r\ngo";
+                    generatedProcs.Add(deleteProc);
+                    //getbyid
+                    var getByIDProc = $"CREATE PROCEDURE proc_GETBYID_{table.TABLE_NAME} @ID int as begin select * from {table.TABLE_NAME} where ID = @ID end;\r\ngo";
+                    generatedProcs.Add(getByIDProc);
                 }
-                //delete
-                var deleteProc = $@"CREATE PROCEDURE sp_DELETE_{table.TABLE_NAME} @ID int as begin delete from {table.TABLE_NAME} where ID = @ID end;";
-                generatedProcs.Add(deleteProc);
-                //getbyid
-                var getByIDProc = $@"CREATE PROCEDURE sp_GETBYID_{table.TABLE_NAME} @ID int as begin select * from {table.TABLE_NAME} where ID = @ID end;";
-                generatedProcs.Add(getByIDProc);
                 //get all 
-                var getAllProc = $@"CREATE PROCEDURE sp_GETALL_{table.TABLE_NAME} as begin select * from {table.TABLE_NAME} end;";
+                var getAllProc = $"CREATE PROCEDURE proc_GETALL_{table.TABLE_NAME} as begin select * from {table.TABLE_NAME} end;\r\ngo";
                 generatedProcs.Add(getAllProc);
 
             }
 
+            var sqlString = "";
+            foreach(var proc in generatedProcs)
+            {
+                sqlString = sqlString + proc + "\r\n";
+            }
+            //Console.WriteLine(sqlString);
+            var cnString = mainForm._configs.ConnectionStringBuilder();
+            using (SqlConnection connection = new SqlConnection(cnString))
+            {
+                ServerConnection sc = new ServerConnection(connection);
+                Server server = new Server(sc);
+                server.ConnectionContext.ExecuteNonQuery(sqlString);
+            }
+            MessageBox.Show("Procedure Generated", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void export_to_sql_btn_Click(object sender, EventArgs e)
@@ -248,7 +266,7 @@ namespace SQLTestDataGenerator
                 //    paramString = paramString + col.Parameter + ", ";
                 //}
                 var insertProc =
-                    $@"CREATE PROCEDURE sp_INSERT_{table.TABLE_NAME} {paramString} as begin INSERT INTO {table.TABLE_NAME}({colString}) values ({varString}) end;";
+                    $"CREATE PROCEDURE proc_INSERT_{table.TABLE_NAME} {paramString} as begin INSERT INTO {table.TABLE_NAME}({colString}) values ({varString}) end;\r\ngo";
                 generatedProcs.Add(insertProc);
 
                 paramString = "";
@@ -267,8 +285,8 @@ namespace SQLTestDataGenerator
                         paramString = paramString + table.Columns[i].Parameter;
                     }
                 }
-
-                if (table.Columns.Select(c => c.COLUMN_NAME == "ID" || c.COLUMN_NAME == "id").Any())
+                List<ColumnModel> isID = table.Columns.Where(c => c.COLUMN_NAME.ToLower() == "id").ToList();
+                if (isID.Count != 0)
                 {
                     for (int i = 0; i < table.Columns.Count; i++)
                     {
@@ -277,7 +295,7 @@ namespace SQLTestDataGenerator
                         {
                             if (table.Columns[i].COLUMN_NAME.ToLower() != "id")
                             {
-                                varString = varString + $@"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}, ";
+                                varString = varString + $"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}, ";
                             }
 
                         }
@@ -285,27 +303,46 @@ namespace SQLTestDataGenerator
                         {
                             if (table.Columns[i].COLUMN_NAME.ToLower() != "id")
                             {
-                                varString = varString + $@"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}";
+                                varString = varString + $"{table.Columns[i].COLUMN_NAME} = @{table.Columns[i].COLUMN_NAME}";
                             }
                         }
                     }
                     var updateProc =
-                    $@"CREATE PROCEDURE sp_UPDATE_{table.TABLE_NAME} {paramString} as begin UPDATE {table.TABLE_NAME} set {varString} where ID = @ID end;";
+                    $"CREATE PROCEDURE proc_UPDATE_{table.TABLE_NAME} {paramString} as begin UPDATE {table.TABLE_NAME} set {varString} where ID = @ID end;\r\ngo";
                     generatedProcs.Add(updateProc);
+                    //delete
+                    var deleteProc = $"CREATE PROCEDURE proc_DELETE_{table.TABLE_NAME} @ID int as begin delete from {table.TABLE_NAME} where ID = @ID end;\r\ngo";
+                    generatedProcs.Add(deleteProc);
+                    //getbyid
+                    var getByIDProc = $"CREATE PROCEDURE proc_GETBYID_{table.TABLE_NAME} @ID int as begin select * from {table.TABLE_NAME} where ID = @ID end;\r\ngo";
+                    generatedProcs.Add(getByIDProc);
                 }
-                //delete
-                var deleteProc = $@"CREATE PROCEDURE sp_DELETE_{table.TABLE_NAME} @ID int as begin delete from {table.TABLE_NAME} where ID = @ID end;";
-                generatedProcs.Add(deleteProc);
-                //getbyid
-                var getByIDProc = $@"CREATE PROCEDURE sp_GETBYID_{table.TABLE_NAME} @ID int as begin select * from {table.TABLE_NAME} where ID = @ID end;";
-                generatedProcs.Add(getByIDProc);
                 //get all 
-                var getAllProc = $@"CREATE PROCEDURE sp_GETALL_{table.TABLE_NAME} as begin select * from {table.TABLE_NAME} end;";
+                var getAllProc = $"CREATE PROCEDURE proc_GETALL_{table.TABLE_NAME} as begin select * from {table.TABLE_NAME} end;\r\ngo";
                 generatedProcs.Add(getAllProc);
 
             }
-        
-            
+
+            this.sql_save_dialog = new SaveFileDialog();
+            sql_save_dialog.Filter = "SQL File|*.sql|Text|*.txt";
+            sql_save_dialog.Title = "Save SQL File";
+            int count = 0;
+            if(sql_save_dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (sql_save_dialog.FileName != "")
+                {
+                    Stream s = File.Open(sql_save_dialog.FileName, FileMode.CreateNew);
+                    StreamWriter sw = new StreamWriter(s);
+                    foreach(var proc in generatedProcs)
+                    {
+                        sw.WriteLine(proc);
+                        count++;
+                    }
+                    sw.Close();
+                }
+                MessageBox.Show("Export complete", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }
